@@ -1,0 +1,992 @@
+* {
+  box-sizing: border-box;
+  }
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+margin: 0;
+min-height: 100vh;
+
+font-family: Arial, sans-serif;
+text-align: center;
+
+color: #f8fafc;
+
+background:
+radial-gradient(
+circle at 15% 10%,
+rgba(255, 89, 94, 0.12),
+transparent 30%
+),
+radial-gradient(
+circle at 85% 20%,
+rgba(255, 140, 66, 0.10),
+transparent 30%
+),
+linear-gradient(
+135deg,
+#080b12,
+#111827,
+#080b12
+);
+}
+
+/* ===============================
+HEADER
+================================ */
+
+header {
+position: relative;
+
+padding: 32px 20px;
+
+background:
+linear-gradient(
+135deg,
+#111827,
+#1a2538
+);
+
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+box-shadow:
+0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+header::after {
+content: "";
+
+position: absolute;
+
+left: 50%;
+bottom: 0;
+
+width: 110px;
+height: 3px;
+
+transform: translateX(-50%);
+
+background:
+linear-gradient(
+90deg,
+#ff595e,
+#ff8c42
+);
+
+border-radius: 10px;
+}
+
+header h1 {
+margin: 0 0 8px;
+
+font-size: clamp(28px, 5vw, 40px);
+font-weight: 800;
+
+letter-spacing: 1px;
+
+background:
+linear-gradient(
+90deg,
+#ffffff,
+#ffb07c
+);
+
+-webkit-background-clip: text;
+background-clip: text;
+
+color: transparent;
+}
+
+header p {
+margin: 0;
+
+color: #94a3b8;
+
+font-size: 15px;
+}
+
+/* ===============================
+GAME SETTINGS
+================================ */
+
+.game-settings {
+width: min(900px, 92%);
+
+margin: 28px auto 18px;
+padding: 18px 22px;
+
+display: flex;
+
+justify-content: center;
+align-items: center;
+
+gap: 12px;
+flex-wrap: wrap;
+
+background:
+rgba(255, 255, 255, 0.055);
+
+border:
+1px solid rgba(255, 255, 255, 0.10);
+
+border-radius: 16px;
+
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+
+box-shadow:
+0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.game-settings label {
+color: #e2e8f0;
+
+font-size: 16px;
+font-weight: bold;
+}
+
+.game-settings select {
+padding: 10px 14px;
+
+border: 1px solid #475569;
+border-radius: 8px;
+
+outline: none;
+
+background: #172033;
+color: white;
+
+font-size: 15px;
+
+cursor: pointer;
+
+transition:
+border-color 0.2s ease,
+box-shadow 0.2s ease;
+}
+
+.game-settings select:hover,
+.game-settings select:focus {
+border-color: #ff8c42;
+
+box-shadow:
+0 0 0 3px rgba(255, 140, 66, 0.12);
+}
+
+/* ===============================
+BUTTONS
+================================ */
+
+button {
+padding: 10px 18px;
+
+border: none;
+border-radius: 8px;
+
+background:
+linear-gradient(
+135deg,
+#ff595e,
+#ff8c42
+);
+
+color: white;
+
+font-size: 15px;
+font-weight: bold;
+
+cursor: pointer;
+
+box-shadow:
+0 6px 16px rgba(255, 89, 94, 0.22);
+
+transition:
+transform 0.2s ease,
+box-shadow 0.2s ease,
+filter 0.2s ease;
+}
+
+button:hover {
+transform: translateY(-2px);
+
+filter: brightness(1.08);
+
+box-shadow:
+0 9px 22px rgba(255, 89, 94, 0.35);
+}
+
+button:active {
+transform: translateY(0);
+}
+
+/* ===============================
+GAME INFORMATION
+================================ */
+
+.game-info {
+width: min(950px, 92%);
+
+margin: 20px auto;
+
+padding: 18px;
+
+display: flex;
+
+justify-content: center;
+align-items: center;
+
+gap: 10px;
+flex-wrap: wrap;
+
+background:
+rgba(255, 255, 255, 0.045);
+
+border:
+1px solid rgba(255, 255, 255, 0.08);
+
+border-radius: 16px;
+
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+
+box-shadow:
+0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+.game-info p {
+margin: 0;
+
+padding: 9px 14px;
+
+border-radius: 9px;
+
+background:
+rgba(255, 255, 255, 0.05);
+
+color: #94a3b8;
+
+font-size: 14px;
+}
+
+.game-info span {
+color: #ffffff;
+
+font-size: 16px;
+font-weight: bold;
+}
+
+#timer {
+color: #ff9b62 !important;
+
+font-size: 18px !important;
+font-weight: 800 !important;
+
+letter-spacing: 1px;
+}
+
+#message {
+width: 100%;
+
+min-height: 24px;
+
+margin: 5px 0 0 !important;
+
+color: #6ee7b7 !important;
+
+font-size: 17px !important;
+font-weight: bold;
+}
+
+/* ===============================
+GAME BOARD
+================================ */
+
+.game-board {
+width: min(1100px, 94%);
+
+min-height: 410px;
+
+margin: 45px auto 75px;
+
+padding: 35px 20px 65px;
+
+display: flex;
+
+justify-content: center;
+align-items: flex-end;
+
+gap: clamp(25px, 6vw, 70px);
+
+position: relative;
+
+background:
+linear-gradient(
+145deg,
+rgba(255, 255, 255, 0.045),
+rgba(255, 255, 255, 0.015)
+);
+
+border:
+1px solid rgba(255, 255, 255, 0.08);
+
+border-radius: 22px;
+
+box-shadow:
+0 20px 55px rgba(0, 0, 0, 0.30);
+
+overflow: hidden;
+}
+
+.game-board::before {
+content: "";
+
+position: absolute;
+
+width: 450px;
+height: 450px;
+
+top: -300px;
+left: 50%;
+
+transform: translateX(-50%);
+
+background:
+rgba(255, 89, 94, 0.06);
+
+border-radius: 50%;
+
+filter: blur(50px);
+
+pointer-events: none;
+}
+
+/* ===============================
+TOWER
+================================ */
+
+.tower {
+width: 240px;
+height: 360px;
+
+position: relative;
+
+display: flex;
+
+flex-direction: column-reverse;
+align-items: center;
+
+padding-bottom: 10px;
+
+border-bottom: 11px solid #475569;
+
+border-radius: 5px;
+
+background:
+linear-gradient(
+to top,
+rgba(255, 255, 255, 0.025),
+transparent
+);
+
+transition:
+transform 0.25s ease,
+background 0.25s ease,
+box-shadow 0.25s ease;
+}
+
+.tower:hover {
+background:
+rgba(255, 255, 255, 0.025);
+}
+
+/* ===============================
+ROD
+================================ */
+
+.rod {
+position: absolute;
+
+bottom: 0;
+
+width: 10px;
+height: 300px;
+
+background:
+linear-gradient(
+90deg,
+#334155,
+#94a3b8,
+#334155
+);
+
+border-radius: 8px;
+
+box-shadow:
+2px 0 8px rgba(0, 0, 0, 0.45);
+
+z-index: 0;
+}
+
+/* ===============================
+DISKS
+================================ */
+
+.disk {
+height: 25px;
+
+margin-top: 3px;
+
+position: relative;
+z-index: 2;
+
+border-radius: 6px;
+
+/*
+JavaScript currently sets:
+disk.style.backgroundColor = "red";
+
+```
+The !important below makes the CSS
+premium gradient win over that inline
+background-color.
+```
+
+*/
+
+background:
+linear-gradient(
+135deg,
+#ff595e,
+#ff8c42
+) !important;
+
+border:
+2px solid rgba(255, 255, 255, 0.20);
+
+box-shadow:
+0 4px 10px rgba(0, 0, 0, 0.35),
+inset 0 1px 2px rgba(255, 255, 255, 0.25);
+
+transition:
+width 0.25s ease,
+transform 0.2s ease,
+filter 0.2s ease,
+box-shadow 0.2s ease;
+
+flex-shrink: 0;
+}
+
+.disk:hover {
+transform: translateY(-2px);
+
+filter: brightness(1.12);
+
+box-shadow:
+0 7px 16px rgba(0, 0, 0, 0.40),
+inset 0 1px 3px rgba(255, 255, 255, 0.30);
+}
+
+/* ===============================
+TOWER LABEL
+================================ */
+
+.tower p {
+position: absolute;
+
+bottom: -48px;
+
+margin: 0;
+
+color: #94a3b8;
+
+font-size: 15px;
+font-weight: bold;
+
+letter-spacing: 0.5px;
+}
+
+/* ===============================
+SELECTED TOWER
+================================ */
+
+.tower.selected {
+background:
+rgba(255, 140, 66, 0.08);
+
+outline:
+2px solid #ff8c42;
+
+outline-offset: 7px;
+
+box-shadow:
+0 0 28px rgba(255, 140, 66, 0.16);
+
+transform: translateY(-4px);
+}
+
+.tower.selected .rod {
+background:
+linear-gradient(
+90deg,
+#ff595e,
+#ffb07c,
+#ff595e
+);
+
+box-shadow:
+0 0 15px rgba(255, 140, 66, 0.45);
+}
+
+/* ===============================
+WIN SCREEN
+================================ */
+
+.win-screen {
+position: fixed;
+inset: 0;
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+padding: 20px;
+
+background: rgba(2, 6, 23, 0.85);
+
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+
+z-index: 99999;
+}
+
+.win-screen.hidden {
+display: none;
+}
+
+
+
+
+.win-card {
+width: min(430px, 100%);
+
+padding: 32px 28px;
+
+background:
+linear-gradient(
+145deg,
+#1e293b,
+#0f172a
+);
+
+color: #f8fafc;
+
+border:
+1px solid rgba(255, 255, 255, 0.12);
+
+border-radius: 20px;
+
+box-shadow:
+0 30px 80px rgba(0, 0, 0, 0.60);
+
+animation:
+winPopup 0.35s ease;
+}
+
+.win-card h2 {
+margin: 0 0 10px;
+
+font-size: 30px;
+
+background:
+linear-gradient(
+90deg,
+#ffffff,
+#ff9b62
+);
+
+-webkit-background-clip: text;
+background-clip: text;
+
+color: transparent;
+}
+
+.win-card > p {
+color: #94a3b8;
+}
+
+.win-stats {
+margin: 22px 0;
+
+padding: 15px;
+
+background:
+rgba(255, 255, 255, 0.055);
+
+border:
+1px solid rgba(255, 255, 255, 0.08);
+
+border-radius: 13px;
+}
+
+.win-stats p {
+margin: 10px 0;
+
+color: #cbd5e1;
+
+font-size: 16px;
+}
+
+.win-stats span {
+color: #ffffff;
+
+font-weight: bold;
+}
+
+#new-best-message {
+margin-bottom: 18px;
+
+color: #6ee7b7;
+
+font-size: 18px;
+font-weight: bold;
+}
+
+#play-again-button {
+padding: 12px 28px;
+
+font-size: 16px;
+}
+
+/* ===============================
+RULES
+================================ */
+
+.rules {
+width: min(650px, 90%);
+
+margin: 60px auto 35px;
+
+padding: 24px 28px;
+
+text-align: left;
+
+background:
+rgba(255, 255, 255, 0.045);
+
+border:
+1px solid rgba(255, 255, 255, 0.08);
+
+border-radius: 16px;
+
+box-shadow:
+0 12px 30px rgba(0, 0, 0, 0.20);
+}
+
+.rules h2 {
+margin-top: 0;
+
+text-align: center;
+
+color: #ffffff;
+}
+
+.rules li {
+margin-bottom: 8px;
+
+color: #94a3b8;
+
+line-height: 1.6;
+}
+
+/* ===============================
+MOBILE
+================================ */
+
+@media (max-width: 900px) {
+
+.game-board {
+gap: 18px;
+}
+
+.tower {
+width: 180px;
+}
+
+.disk {
+max-width: 95%;
+}
+}
+
+@media (max-width: 700px) {
+
+header {
+padding: 28px 15px;
+}
+
+header h1 {
+font-size: 28px;
+}
+
+header p {
+font-size: 14px;
+}
+
+.game-settings {
+width: 94%;
+padding: 15px 10px;
+}
+
+.game-info {
+width: 94%;
+padding: 13px 8px;
+}
+
+.game-info p {
+min-width: 110px;
+
+
+padding: 8px 9px;
+
+font-size: 12px;
+
+
+}
+
+.game-info span {
+font-size: 14px;
+}
+
+.game-board {
+width: 96%;
+
+
+min-height: 380px;
+
+gap: 7px;
+
+margin: 38px auto 65px;
+
+padding: 28px 4px 58px;
+
+border-radius: 18px;
+
+
+}
+
+.tower {
+width: 105px;
+height: 330px;
+}
+
+.rod {
+width: 8px;
+height: 275px;
+}
+
+.disk {
+height: 22px;
+
+
+margin-top: 2px;
+
+max-width: 95%;
+
+
+}
+
+.tower p {
+bottom: -42px;
+
+
+font-size: 13px;
+
+
+}
+
+.game-settings select {
+padding: 9px 10px;
+
+
+font-size: 14px;
+
+
+}
+
+button {
+padding: 9px 13px;
+
+
+font-size: 14px;
+
+
+}
+
+.rules {
+width: 94%;
+
+
+padding: 20px;
+
+
+}
+}
+
+@media (max-width: 400px) {
+
+header h1 {
+font-size: 25px;
+}
+
+.game-board {
+gap: 3px;
+
+
+padding-left: 2px;
+padding-right: 2px;
+
+
+}
+
+.tower {
+width: 90px;
+height: 310px;
+}
+
+.rod {
+height: 255px;
+}
+
+.disk {
+height: 20px;
+}
+
+.game-info p {
+min-width: 98px;
+
+
+font-size: 11px;
+
+
+}
+
+.win-card {
+padding: 27px 18px;
+}
+
+.win-card h2 {
+font-size: 26px;
+}
+}
+
+/* ===============================
+ACCESSIBILITY
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+*,
+*::before,
+*::after {
+animation-duration: 0.01ms !important;
+transition-duration: 0.01ms !important;
+}
+}
+
+
+
+/* ===============================
+INDIVIDUAL DISK COLORS
+================================ */
+
+.disk-1 {
+background: linear-gradient(
+135deg,
+#00c6ff,
+#0072ff
+) !important;
+}
+
+.disk-2 {
+background: linear-gradient(
+135deg,
+#00f5a0,
+#00d9f5
+) !important;
+}
+
+.disk-3 {
+background: linear-gradient(
+135deg,
+#ffe259,
+#ffa751
+) !important;
+}
+
+.disk-4 {
+background: linear-gradient(
+135deg,
+#ff9966,
+#ff5e62
+) !important;
+}
+
+.disk-5 {
+background: linear-gradient(
+135deg,
+#c471ed,
+#8e44ad
+) !important;
+}
+
+.disk-6 {
+background: linear-gradient(
+135deg,
+#f7971e,
+#ffd200
+) !important;
+}
+
+.disk-7 {
+background: linear-gradient(
+135deg,
+#56ccf2,
+#2f80ed
+) !important;
+}
+
+.disk-8 {
+background: linear-gradient(
+135deg,
+#f953c6,
+#b91d73
+) !important;
+}
+
+.disk-9 {
+background: linear-gradient(
+135deg,
+#43e97b,
+#38f9d7
+) !important;
+}
+
+.disk-10 {
+background: linear-gradient(
+135deg,
+#fa709a,
+#fee140
+) !important;
+}
+
+.game-board {
+position: relative;
+z-index: 1;
+}
+
+.game-info {
+position: relative;
+z-index: 2;
+}

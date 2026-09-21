@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tower of Hanoi By Mohit Tanwar</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Tower of Hanoi By Mohit Tanwar</h1>
+    <p>Move all disks from Tower 1 to Tower 3.</p>
+  </header>
+
+  <main>
+
+    
+    <!-- Game Settings -->
+    <section class="game-settings">
+
+      <label for="disk-count">
+        Number of Disks:
+      </label>
+
+      <select id="disk-count">
+        <option value="3">3 Disks</option>
+        <option value="4">4 Disks</option>
+        <option value="5">5 Disks</option>
+        <option value="6">6 Disks</option>
+        <option value="7">7 Disks</option>
+        <option value="8">8 Disks</option>
+        <option value="9">9 Disks</option>
+        <option value="10">10 Disks</option>
+      </select>
+
+      <button id="start-button">Start Game</button>
+      <button id="undo-button">↩ Undo Move</button>
+
+
+    </section>
+
+
+    <!-- Game Information -->
+    <section class="game-info">
+
+      <p>
+        Moves:
+        <span id="move-count">0</span>
+      </p>
+
+      <p>
+        Minimum moves:
+        <span id="minimum-moves">7</span>
+      </p>
+
+      <p>
+        Time:
+        <span id="timer">00:00</span>
+      </p>
+
+      <p>
+        Best score:
+        <span id="best-score">Not set</span>
+      </p>
+
+      <button id="reset-button">
+        Reset Game
+      </button>
+
+      <p id="message"></p>
+
+      <div id="win-screen" class="win-screen hidden">
+        <div class="win-card">
+          <h2>🎉 Congratulations!</h2>
+          <p>You solved the Tower of Hanoi!</p>
+
+          
+          <div class="win-stats">
+            <p>Disks: <span id="win-disks">0</span></p>
+            <p>Moves: <span id="win-moves">0</span></p>
+            <p>Time: <span id="win-time">00:00</span></p>
+            <p>Minimum Moves: <span id="win-minimum">0</span></p>
+          </div>
+
+          <p id="new-best-message"></p>
+
+          <button id="play-again-button">Play Again</button>
+        </div>
+        
+
+      </div>
+
+
+    </section>
+
+  
+
+
+    <!-- Game Board -->
+    <section class="game-board">
+
+      <div class="tower" id="tower-1">
+        <div class="rod"></div>
+
+        <div class="disk disk-3"></div>
+        <div class="disk disk-2"></div>
+        <div class="disk disk-1"></div>
+
+        <p>Tower 1</p>
+      </div>
+
+
+      <div class="tower" id="tower-2">
+
+        <div class="rod"></div>
+
+        <p>Tower 2</p>
+
+      </div>
+
+
+      <div class="tower" id="tower-3">
+
+        <div class="rod"></div>
+
+        <p>Tower 3</p>
+
+      </div>
+
+    </section>
+
+
+    <!-- Rules -->
+    <section class="rules">
+
+      <h2>Rules</h2>
+
+      <ol>
+        <li>Move only one disk at a time.</li>
+        <li>Only move the top disk of a tower.</li>
+        <li>Never place a larger disk on a smaller disk.</li>
+      </ol>
+
+    </section>
+    
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
